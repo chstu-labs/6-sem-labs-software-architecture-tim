@@ -1,9 +1,14 @@
 {
+  "name": "lab-software-architecture-tim",
+  "version": "1.0.0",
+  "description": "Software Architecture: lab №1",
+  "author": "timlftv",
   "scripts": {
     "test": "jest"
   },
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "nodemon": "^3.1.0"
   },
   "devDependencies": {
     "jest": "^29.7.0",
