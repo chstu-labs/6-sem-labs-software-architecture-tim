@@ -1,14 +1,23 @@
-const express = require("express");
-const app = express();
+const app = require("./server");
+const axios = require("axios");
 
-const API_URL = process.env.API_URL;
+const host = process.env.API_URL;
+const apiPort = process.env.API_PORT;
+const port = process.env.PROXY_PORT;
 
-app.use((request, response, next) => {
-  fetch(API_URL + request.url)
-    .then((response) => response.text())
-    .then((text) => {
-      response.send(text);
+const proxyURL = `${host}:${apiPort}`;
+
+app.use((request, response) => {
+  axios
+    .get(proxyURL + request.url)
+    .then((res) => {
+      response.send(res.data);
+    })
+    .catch((err) => {
+      response.status(500).send("Something went wrong!");
     });
 });
 
-app.listen(3001);
+app.listen(port, () => {
+  console.log(`Server is running at ${host}:${port}`);
+});
