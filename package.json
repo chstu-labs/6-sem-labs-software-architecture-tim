@@ -1,6 +1,8 @@
 {
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "proxy": "nodemon --env-file=.env proxy/app.js",
+    "start": "nodemon --env-file=.env api/app.js"
   },
   "dependencies": {
     "express": "^4.18.2"
