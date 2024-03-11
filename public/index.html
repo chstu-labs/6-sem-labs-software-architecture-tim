@@ -58,6 +58,7 @@
                 // получаем данные
                 const users = await response.json();
                 let rows = document.querySelector("tbody");
+                console.log(users)
                 users.forEach(user => {
                     // добавляем полученные элементы в таблицу
                     rows.append(row(user));
@@ -109,7 +110,6 @@
             if (response.ok === true) {
                 const user = await response.json();
                 reset();
-                console.log(user);
                 document.querySelector("tr[data-rowid='" + user._id + "']").replaceWith(row(user));
             }
         }
@@ -121,7 +121,6 @@
             });
             if (response.ok === true) {
                 const user = await response.json();
-                console.log(user);
                 document.querySelector("tr[data-rowid='" + user._id + "']").remove();
             }
         }
@@ -198,6 +197,9 @@
             const id = form.elements["id"].value;
             const name = form.elements["name"].value;
             const age = form.elements["age"].value;
+
+            if (!name || !age) return;
+
             if (id == 0)
                 CreateUser(name, age);
             else
