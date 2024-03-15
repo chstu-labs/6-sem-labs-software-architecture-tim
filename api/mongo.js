@@ -1,7 +1,9 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const url = "mongodb://localhost:27017/usersdb";
+const { MONGO_DB_HOSTNAME, MONGO_DB_PORT, MONGO_DB } = process.env;
+
+const url = `mongodb://${MONGO_DB_HOSTNAME}:${MONGO_DB_PORT}/${MONGO_DB}`;
 
 const userSchema = new Schema({
   name: String,
